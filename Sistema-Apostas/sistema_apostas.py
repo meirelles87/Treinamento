@@ -1,26 +1,35 @@
 import requests
+from datetime import datetime
+from flask import Flask, jsonify, render_template
+
+app = Flask(__name__)
 
 class SistemaApostas:
     def __init__(self):
         self.dados = []  # Banco de dados temporário
-        self.api_url = "https://api.football-data.org/v4/matches"  # Exemplo de API
-        self.api_key = "SUA_CHAVE_API"  # Substitua pela sua chave real
+        self.api_url = "https://api.football-data.org/v4/matches"  # Nova API confiável
+        self.api_key = "c278f48363ee49eb9c979a338104addc"  # Chave de API fornecida pelo usuário
+        self.torneios = ["WC", "CL", "BL1", "DED", "BSA", "PD", "FL1", "ELC", "PPL", "EC", "SA", "PL"]
     
     def atualizar_dados(self):
         """Método para atualizar estatísticas diariamente."""
-        headers = {"X-Auth-Token": self.api_key}
-        response = requests.get(self.api_url, headers=headers)
+        headers = {
+            "X-Auth-Token": self.api_key,
+            "Content-Type": "application/json"
+        }
+        response = requests.get(f"{self.api_url}?competitions={','.join(self.torneios)}", headers=headers)
         
         if response.status_code == 200:
             self.dados = response.json().get("matches", [])
             print("Dados atualizados com sucesso!")
         else:
-            print(f"Erro ao buscar dados: {response.status_code}")
+            print(f"Erro ao buscar dados: {response.status_code} - {response.text}")
     
     def filtrar_por_gols(self, jogo, min_gols=None, max_gols=None):
         """Filtra jogos pelo número de gols marcados na partida."""
-        total_gols = jogo.get('score', {}).get('fullTime', {}).get('homeTeam', 0) + \
-                     jogo.get('score', {}).get('fullTime', {}).get('awayTeam', 0)
+        gols_casa = jogo.get('score', {}).get('fullTime', {}).get('home', 0) or 0
+        gols_fora = jogo.get('score', {}).get('fullTime', {}).get('away', 0) or 0
+        total_gols = gols_casa + gols_fora
 
         if min_gols is not None and total_gols < min_gols:
             return False
@@ -46,20 +55,6 @@ class SistemaApostas:
             return False
         return True
 
-    def filtrar_por_media_gols(self, time, ultimos_jogos, min_media=None, max_media=None):
-        """Filtra jogos baseando-se na média de gols do time nos últimos jogos."""
-        total_gols = sum(jogo.get('score', {}).get('fullTime', {}).get('homeTeam', 0) +
-                         jogo.get('score', {}).get('fullTime', {}).get('awayTeam', 0)
-                         for jogo in ultimos_jogos)
-        
-        media_gols = total_gols / len(ultimos_jogos) if ultimos_jogos else 0
-
-        if min_media is not None and media_gols < min_media:
-            return False
-        if max_media is not None and media_gols > max_media:
-            return False
-        return True
-
     def aplicar_filtros(self, filtros):
         """Recebe uma lista de filtros e retorna jogos futuros compatíveis."""
         jogos_filtrados = []
@@ -67,23 +62,20 @@ class SistemaApostas:
             if all(filtro(jogo) for filtro in filtros):
                 jogos_filtrados.append(jogo)
         return jogos_filtrados
-    
-    def exibir_resultados(self, jogos):
-        """Mostra os jogos filtrados ao usuário."""
-        for jogo in jogos:
-            print(jogo)  # Futuramente podemos formatar melhor a interface
 
-# Exemplo de uso
 sistema = SistemaApostas()
 sistema.atualizar_dados()
 
-# Criar filtros
-filtros = [
-    lambda jogo: sistema.filtrar_por_gols(jogo, min_gols=2),   # Jogos com pelo menos 2 gols
-    lambda jogo: sistema.filtrar_por_local(jogo, "Flamengo", "casa"),  # Flamengo jogando em casa
-    lambda jogo: sistema.filtrar_por_odds(jogo, min_odd=1.5, max_odd=3.0)  # Odds entre 1.5 e 3.0
-]
+@app.route('/')
+def home():
+    """Página inicial que exibe os jogos filtrados."""
+    filtros = [
+        lambda jogo: sistema.filtrar_por_gols(jogo, min_gols=2),   # Jogos com pelo menos 2 gols
+        lambda jogo: sistema.filtrar_por_local(jogo, "Flamengo", "casa"),  # Flamengo jogando em casa
+        lambda jogo: sistema.filtrar_por_odds(jogo, min_odd=1.5, max_odd=3.0)  # Odds entre 1.5 e 3.0
+    ]
+    resultados = sistema.aplicar_filtros(filtros)
+    return jsonify(resultados)
 
-# Aplicar filtros
-resultados = sistema.aplicar_filtros(filtros)
-sistema.exibir_resultados(resultados)
+if __name__ == '__main__':
+    app.run(debug=True)
