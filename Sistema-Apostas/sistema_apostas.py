@@ -1,6 +1,6 @@
 import requests
 from datetime import datetime
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
@@ -21,6 +21,7 @@ class SistemaApostas:
         
         if response.status_code == 200:
             self.dados = response.json().get("matches", [])
+            print(self.dados)
             print("Dados atualizados com sucesso!")
         else:
             print(f"Erro ao buscar dados: {response.status_code} - {response.text}")
@@ -40,14 +41,14 @@ class SistemaApostas:
     def filtrar_por_local(self, jogo, time, local):
         """Filtra jogos onde o time joga em casa ou fora."""
         if local == "casa":
-            return jogo.get('homeTeam', {}).get('name') == time
+            return jogo.get('homeTeam', {}).get('name', '') == time
         elif local == "fora":
-            return jogo.get('awayTeam', {}).get('name') == time
+            return jogo.get('awayTeam', {}).get('name', '') == time
         return False
 
     def filtrar_por_odds(self, jogo, min_odd=None, max_odd=None):
         """Filtra jogos por odds das casas de apostas."""
-        odd = jogo.get('odds', {}).get('homeWin', 0)  # Exemplo pegando odd da vitória do time da casa
+        odd = jogo.get('odds', {}).get('homeWin', 0) or 0
 
         if min_odd is not None and odd < min_odd:
             return False
