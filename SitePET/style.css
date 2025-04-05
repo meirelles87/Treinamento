@@ -1,0 +1,161 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #fff8f0;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  header {
+    background-color: #ff6f61;
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+  }
+  
+  header h1 {
+    font-size: 32px;
+  }
+  
+  header p {
+    font-size: 18px;
+  }
+  
+  nav {
+    background-color: #fff0ea;
+    text-align: center;
+    padding: 15px 0;
+  }
+  
+  nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #ff6f61;
+    font-weight: bold;
+  }
+  
+  nav a:hover {
+    opacity: 0.6;
+    transition: 0.3s;
+  }
+  
+  section {
+    padding: 30px 20px;
+    max-width: 1000px;
+    margin: auto;
+  }
+  
+  section h2 {
+    color: #ff6f61;
+    margin-bottom: 20px;
+  }
+  
+
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .product {
+    border: 1px solid #ffd8cc;
+    border-radius: 8px;
+    padding: 15px;
+    background-color: white;
+    text-align: center;
+    transition: opacity 0.3s ease;
+  }
+  
+  .product:hover {
+    opacity: 0.8;
+  }
+  
+  .product img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .product a {
+    display: block;
+    margin-top: 10px;
+    background-color: #ff6f61;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  .btn-leia-mais {
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #ff6f61;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-leia-mais:hover {
+    background-color: #e75c4e;
+  }
+  
+  footer {
+    background-color: #fff0ea;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .alert {
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 15px;
+    border-left: 5px solid #ffecb5;
+    margin: 30px 0;
+    border-radius: 5px;
+  
+  }
+
+ 
+ .alert:hover {
+  font-size: 20px;
+  background-color: rgb(219, 191, 29);
+  color: #333;
+  transition: 0.3s;
+  border-radius: 15px;
+  cursor: crosshair;
+  font: bold;
+  text-shadow: 0 0 10px ; /* Brilho/glow ao redor do texto */
+  font-weight: bold; /* Texto mais nítido */
+ }
+
+
+  .resumo p {
+    margin-bottom: 10px;
+  }
+  
+  #conteudo-racao,
+  #dicas-ansiedade,
+  #conteudo-filhotes {
+    background-color: #fff;
+    border: 1px solid #ffd8cc;
+    border-radius: 5px;
+    padding: 20px;
+  }
+
+
+ 
