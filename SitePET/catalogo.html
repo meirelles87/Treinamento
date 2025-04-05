@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cães</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Estilos com as cores e fontes da imagem de referência */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff8f0;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+
+        header {
+            background-color: #ff6f61;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .nav-menu {
+            background-color: #fff9f2;
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+
+        .nav-menu a {
+            color: #ff6f61;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        .category-title {
+            display: flex;
+            align-items: center;
+            color: #ff6f61;
+            font-size: 24px;
+            margin: 20px 0;
+            padding-left: 10px;
+        }
+
+        .category-emoji {
+            margin-right: 10px;
+            font-size: 28px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 0 20px;
+        }
+
+        .product-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 15px;
+            background-color: white;
+            transition: transform 0.3s;
+            overflow: hidden;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: contain;
+            border-radius: 6px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .product-title {
+            font-weight: bold;
+            margin: 15px 0 10px;
+            color: #333;
+            min-height: 40px;
+        }
+
+        .product-price {
+            color: #ff6f61;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .btn-buy {
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            padding: 12px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .btn-buy:hover {
+            background-color: #e55a4d;
+        }
+
+        .category-section {
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>🐾 Cães.</h1>
+
+    </header>
+
+    <nav class="nav-menu">
+        <a href="./index.html">Home</a>
+        <a href="#caes">Cães</a>
+        <a href="#gatos">Gatos</a>
+        <a href="#dicas">Dicas</a>
+        <a href="#promocoes">Promoções</a>
+    </nav>
+
+    <!-- <section id="caes" class="category-section"> -->
+        <h2 class="category-title"><span class="category-emoji">🐕</span> Cuidados com Seu Cachorro</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="/api/placeholder/400/320" alt="Ração Frost Super Premium" class="product-image">
+                <h3 class="product-title">Ração Frost Super Premium Adult Mini & Small</h3>
+                <p class="product-price">R$ 89,90</p>
+                <a href="SEU_LINK_AFILIADO_SHOPEE_1" class="btn-buy">Ver na Shopee</a>
+            </div>
+
+            <div class="product-card">
+                <img src="/api/placeholder/400/320" alt="Cama para Cachorro" class="product-image">
+                <h3 class="product-title">Cama Azul Estampada para Cães de Pequeno Porte</h3>
+                <p class="product-price">R$ 69,99</p>
+                <a href="SEU_LINK_AFILIADO_SHOPEE_2" class="btn-buy">Ver na Shopee</a>
+            </div>
+
+            <div class="product-card">
+                <img src="/api/placeholder/400/320" alt="Brinquedo para Cachorro" class="product-image">
+                <h3 class="product-title">Brinquedo Mordedor de Borracha para Cães</h3>
+                <p class="product-price">R$ 29,90</p>
+                <a href="SEU_LINK_AFILIADO_SHOPEE_3" class="btn-buy">Ver na Shopee</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="gatos" class="category-section">
+        <h2 class="category-title"><span class="category-emoji">🐱</span> Produtos para Gatos</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="/api/placeholder/400/320" alt="Ração para Gatos" class="product-image">
+                <h3 class="product-title">Ração Premium para Gatos Adultos</h3>
+                <p class="product-price">R$ 79,90</p>
+                <a href="SEU_LINK_AFILIADO_SHOPEE_4" class="btn-buy">Ver na Shopee</a>
+            </div>
+
+            <div class="product-card">
+                <img src="/api/placeholder/400/320" alt="Arranhador para Gatos" class="product-image">
+                <h3 class="product-title">Arranhador Torre com Três Níveis</h3>
+                <p class="product-price">R$ 119,99</p>
+                <a href="SEU_LINK_AFILIADO_SHOPEE_5" class="btn-buy">Ver na Shopee</a>
+            </div>
+
+            <div class="product-card">
+                <img src="/api/placeholder/400/320" alt="Brinquedo para Gato" class="product-image">
+                <h3 class="product-title">Varinha com Penas e Guizo</h3>
+                <p class="product-price">R$ 19,90</p>
+                <a href="SEU_LINK_AFILIADO_SHOPEE_6" class="btn-buy">Ver na Shopee</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="promocoes" class="category-section">
+        <h2 class="category-title"><span class="category-emoji">🔥</span> Promoções da Semana</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="/api/placeholder/400/320" alt="Kit Higiene" class="product-image">
+                <h3 class="product-title">Kit Higiene Completo para Cães</h3>
+                <p class="product-price">R$ 59,90 <span
+                        style="text-decoration: line-through; color: #999; font-size: 14px;">R$ 89,90</span></p>
+                <a href="SEU_LINK_AFILIADO_SHOPEE_7" class="btn-buy">Ver na Shopee</a>
+            </div>
+
+            <div class="product-card">
+                <img src="/api/placeholder/400/320" alt="Comedouro Automático" class="product-image">
+                <h3 class="product-title">Comedouro Automático 3kg</h3>
+                <p class="product-price">R$ 149,90 <span
+                        style="text-decoration: line-through; color: #999; font-size: 14px;">R$ 199,90</span></p>
+                <a href="SEU_LINK_AFILIADO_SHOPEE_8" class="btn-buy">Ver na Shopee</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="dicas" class="category-section">
+        <h2 class="category-title"><span class="category-emoji">💡</span> Dicas de Cuidados</h2>
+        <div style="background-color: white; border-radius: 8px; padding: 20px; margin: 0 20px;">
+            <h3 style="color: #ff6f61;">Como escolher a ração ideal para seu pet</h3>
+            <p>Considere a idade, tamanho, nível de atividade e necessidades específicas do seu animal ao escolher uma
+                ração. Rações premium geralmente contêm ingredientes de melhor qualidade e menor quantidade de
+                enchimentos.</p>
+
+            <h3 style="color: #ff6f61; margin-top: 20px;">Frequência ideal de banhos</h3>
+            <p>Para cães, a frequência de banho depende da raça, tipo de pelo e estilo de vida. Em geral, uma vez por
+                mês é suficiente para a maioria dos cães. Gatos normalmente não precisam de banhos regulares, pois se
+                limpam naturalmente.</p>
+        </div>
+    </section>
+
+    <footer style="background-color: #ff6f61; color: white; text-align: center; padding: 20px; margin-top: 30px;">
+        <p>© 2025 PetShop Afiliados - Todos os direitos reservados</p>
+        <p style="font-size: 12px;">Os links contidos neste site são links de afiliados. Recebemos uma pequena comissão
+            por compras realizadas através destes links.</p>
+    </footer>
+</body>
+
+</html>
